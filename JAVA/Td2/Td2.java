@@ -178,17 +178,43 @@
 // }
 
 
-// NEW EXO 2 PF 4 PAGE 29
+// // NEW EXO 2 PF 4 PAGE 29
+// import java.util.*;
+// import java.util.function.BiFunction;
+
+// public class Td2 {
+//     public static void main(String[] args) {
+//         // List of numbers to work with
+//         List<Integer> numbers = Arrays.asList(5, 1, 2, 4, 0);
+
+//         // Define BiFunction to filter numbers greater than a given value (n)
+//         BiFunction<List<Integer>, Integer, List<Integer>> largerThan = (nums, n) -> {
+//             List<Integer> result = new ArrayList<>();
+//             for (Integer num : nums) {
+//                 if (num > n) {
+//                     result.add(num);
+//                 }
+//             }
+//             return result;
+//         };
+
+//         // Test the BiFunction with different values for 'n'
+//         System.out.println(largerThan.apply(numbers, 4));  // Output: [5]
+//         System.out.println(largerThan.apply(numbers, 1));  // Output: [5, 2, 4]
+//     }
+// }
+
+// CURRYFICATION version
 import java.util.*;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Td2 {
     public static void main(String[] args) {
         // List of numbers to work with
         List<Integer> numbers = Arrays.asList(5, 1, 2, 4, 0);
 
-        // Define BiFunction to filter numbers greater than a given value (n)
-        BiFunction<List<Integer>, Integer, List<Integer>> largerThan = (nums, n) -> {
+        // Curried function for filtering numbers greater than a given value (n)
+        Function<Integer, Function<List<Integer>, List<Integer>>> largerThan = n -> nums -> {
             List<Integer> result = new ArrayList<>();
             for (Integer num : nums) {
                 if (num > n) {
@@ -198,8 +224,9 @@ public class Td2 {
             return result;
         };
 
-        // Test the BiFunction with different values for 'n'
-        System.out.println(largerThan.apply(numbers, 4));  // Output: [5]
-        System.out.println(largerThan.apply(numbers, 1));  // Output: [5, 2, 4]
+        // Test the curried function with different values for 'n'
+        System.out.println(largerThan.apply(4).apply(numbers));  // Output: [5]
+        System.out.println(largerThan.apply(1).apply(numbers));  // Output: [5, 2, 4]
     }
 }
+
