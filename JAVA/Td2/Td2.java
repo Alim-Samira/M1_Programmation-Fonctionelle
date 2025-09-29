@@ -1,6 +1,6 @@
-import java.util.function.Function;
+// import java.util.function.Function;
 
-public class Td2 {
+// public class Td2 {
 
 //     // Comparator that sorts words by their length
 //     private static final Comparator<String> scoreComparator = Comparator.comparingInt(String::length);
@@ -145,9 +145,9 @@ public class Td2 {
 
 // EXO 1
  // Method that takes score, bonus, and malus functions as parameters
-    static int calculateFinalScore(String word, Function<String, Integer> score, 
-                                   Function<String, Integer> bonus, 
-                                   Function<String, Integer> malus) {
+    // static int calculateFinalScore(String word, Function<String, Integer> score, 
+                                //    Function<String, Integer> bonus, 
+                                //    Function<String, Integer> malus) {
 
                     //   Alternative to 👆🏻            
                       // static Calculateur score = word -> word.replaceALL (regex:"a", replacement:"").length();
@@ -156,23 +156,50 @@ public class Td2 {
                         // static calculateur wordScore(Calculateur base, Ca{
                         
         // Calculate final score based on score, bonus, and malus
-        return score.apply(word) + bonus.apply(word) + malus.apply(word);
-    }
+//         return score.apply(word) + bonus.apply(word) + malus.apply(word);
+//     }
 
+//     public static void main(String[] args) {
+//         // Words to be scored
+//         String word1 = "scala";
+//         String word2 = "Java";
+//         String word3 = "Hey";
+
+//         // Define score, bonus, and malus as functions
+//         Function<String, Integer> score = word -> word.length();  // Score based on word length
+//         Function<String, Integer> bonus = word -> word.contains("s") ? -7 : 0;  // Bonus if the word contains 's'
+//         Function<String, Integer> malus = word -> 0;  // No malus, but can be extended
+
+//         // Displaying the final score for each word by passing the functions as parameters
+//         System.out.println("Score for 'scala': " + calculateFinalScore(word1, score, bonus, malus));  // 5 (length 5 + no penalty)
+//         System.out.println("Score for 'Java': " + calculateFinalScore(word2, score, bonus, malus));  // 5 (length 5 + no penalty)
+//         System.out.println("Score for 'Hey': " + calculateFinalScore(word3, score, bonus, malus)); // 3 (length 8 - 7 for 's')
+//     }
+// }
+
+
+// NEW EXO 2 PF 4 PAGE 29
+import java.util.*;
+import java.util.function.BiFunction;
+
+public class Td2 {
     public static void main(String[] args) {
-        // Words to be scored
-        String word1 = "scala";
-        String word2 = "Java";
-        String word3 = "Hey";
+        // List of numbers to work with
+        List<Integer> numbers = Arrays.asList(5, 1, 2, 4, 0);
 
-        // Define score, bonus, and malus as functions
-        Function<String, Integer> score = word -> word.length();  // Score based on word length
-        Function<String, Integer> bonus = word -> word.contains("s") ? -7 : 0;  // Bonus if the word contains 's'
-        Function<String, Integer> malus = word -> 0;  // No malus, but can be extended
+        // Define BiFunction to filter numbers greater than a given value (n)
+        BiFunction<List<Integer>, Integer, List<Integer>> largerThan = (nums, n) -> {
+            List<Integer> result = new ArrayList<>();
+            for (Integer num : nums) {
+                if (num > n) {
+                    result.add(num);
+                }
+            }
+            return result;
+        };
 
-        // Displaying the final score for each word by passing the functions as parameters
-        System.out.println("Score for 'scala': " + calculateFinalScore(word1, score, bonus, malus));  // 5 (length 5 + no penalty)
-        System.out.println("Score for 'Java': " + calculateFinalScore(word2, score, bonus, malus));  // 5 (length 5 + no penalty)
-        System.out.println("Score for 'Hey': " + calculateFinalScore(word3, score, bonus, malus)); // 3 (length 8 - 7 for 's')
+        // Test the BiFunction with different values for 'n'
+        System.out.println(largerThan.apply(numbers, 4));  // Output: [5]
+        System.out.println(largerThan.apply(numbers, 1));  // Output: [5, 2, 4]
     }
 }
