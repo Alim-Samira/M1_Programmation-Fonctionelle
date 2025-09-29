@@ -1,0 +1,37 @@
+scala to count the number of letters in a list of words:
+
+def score(word: String): Int = word.length
+
+or 
+ def cumulativeScore(scoring: String => Int, words: List[String]): Int = {
+     |   words.foldLeft(0)((acc, word) => acc + scoring(word))
+     | }
+
+val words = List("scala", "java", "haskell", "python")
+     | println(cumulativeScore(score, words))
+
+
+result :
+22
+val words: List[String] = List(scala, java, haskell, python)
+
+//////////////////////////////////////:
+
+Key Concepts:
+
+foldRight: This is a higher-order function in Scala that takes two arguments:
+
+An initial value ("" in this case, which is an empty string).
+
+A function (x, acc) => acc + " (" + x + ")", where x is the current element and acc is the accumulator (the running result of the fold).
+
+Right to Left: foldRight processes the list starting from the last element and moving towards the first element.
+
+val bn = List("scala", "java", "haskell", "python")
+
+val result = bn.foldRight("")((x, acc) => acc + " (" + x + ")")
+
+println(result)
+
+
+/////////////////////
