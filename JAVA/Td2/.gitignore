@@ -1,0 +1,12 @@
+# Ignore all .class files
+*.class
+
+# Ignore project metadata and build files
+*.log
+*.tasty
+*.sbt
+*.vscode/
+.metals/
+target/
+.idea/
+out/
